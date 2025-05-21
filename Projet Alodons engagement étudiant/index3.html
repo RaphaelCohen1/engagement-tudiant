@@ -140,6 +140,23 @@
             border: 1px solid #ccc;
             border-radius: 5px;
         }
+        .checkbox-group {
+            margin: 10px 0;
+            display: flex;
+            flex-direction: column;
+        }
+        .checkbox-group input {
+            margin-right: 5px;
+        }
+
+        .checkbox-group label {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
         .checkbox-group input {
             margin-right: 5px;
         }
@@ -220,38 +237,45 @@
         </div>
 
         <!-- Section 2: Mes coordonnées -->
-        <div class="section section-2">
-            <h2>2. Mes coordonnées</h2>
-            <p>Les informations suivantes nous permettent de vous adresser un reçu fiscal et de mieux gérer votre don.</p>
-            <div class="radio-group">
-                <label><input type="radio" name="type" value="individual" checked> Particulier</label>
-                <label><input type="radio" name="type" value="company"> Entreprise</label>
-            </div>
-            <div class="input-group">
-                <label for="email">Email *</label>
-                <input type="email" id="email" required>
-            </div>
-            <div class="input-group">
-                <label for="civility">Civilité *</label>
-                <select id="civility" required>
-                    <option value="">Sélectionner</option>
-                    <option value="mr">Monsieur</option>
-                    <option value="mrs">Madame</option>
-                </select>
-            </div>
-            <div class="input-group">
-                <label for="last-name">Nom *</label>
-                <input type="text" id="last-name" required>
-            </div>
-            <div class="input-group">
-                <label for="first-name">Prénom *</label>
-                <input type="text" id="first-name" required>
-            </div>
-            <div class="checkbox-group">
-                <label><input type="checkbox" id="anonymous"> Faire un don anonyme</label>
-            </div>
-        </div>
+<div class="section section-2">
+    <h2>2. Mes coordonnées</h2>
+    <p>Les informations suivantes nous permettent de vous adresser un reçu fiscal et de mieux gérer votre don.</p>
+    <div class="radio-group">
+        <label><input type="radio" name="type" value="individual" checked> Particulier</label>
+        <label><input type="radio" name="type" value="company"> Entreprise</label>
+    </div>
+    <div class="input-group">
+        <label for="email">Email *</label>
+        <input type="email" id="email" required>
+    </div>
+    <div class="input-group">
+        <label for="civility">Civilité *</label>
+        <select id="civility" required>
+            <option value="">Sélectionner</option>
+            <option value="mr">Monsieur</option>
+            <option value="mrs">Madame</option>
+        </select>
+    </div>
+    <div class="input-group">
+        <label for="last-name">Nom *</label>
+        <input type="text" id="last-name" required>
+    </div>
+    <div class="input-group">
+        <label for="first-name">Prénom *</label>
+        <input type="text" id="first-name" required>
+    </div>
+    <div class="checkbox-group">
+        <label><input type="checkbox" id="anonymous"> Faire un don anonyme</label>
+    </div>
 
+    <!-- Consentement RGPD -->
+    <div class="checkbox-group">
+        <label>
+            <input type="checkbox" id="consent" required>
+            J'accepte que mes données soient utilisées dans le cadre de la gestion des dons de l'association, conformément à la politique de confidentialité.
+        </label>
+    </div>
+</div>
         <!-- Section 3: Mode de règlement -->
         <div class="section section-3">
             <h2>3. Mon règlement</h2>
@@ -293,13 +317,17 @@
             const civility = document.getElementById('civility').value;
             const lastName = document.getElementById('last-name').value;
             const firstName = document.getElementById('first-name').value;
+            const consent = document.getElementById('consent').checked;
 
             if (!email || !civility || !lastName || !firstName) {
                 alert('Veuillez remplir tous les champs obligatoires.');
                 return;
             }
-
             alert('Don validé avec succès !');
+            if (!consent) {
+                alert("Vous devez accepter le consentement pour continuer.");
+                return;
+            }
         }
 
         // Initialize default amount
