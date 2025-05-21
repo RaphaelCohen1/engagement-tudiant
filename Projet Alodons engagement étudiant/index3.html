@@ -8,7 +8,7 @@
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 0; /* <- ICI changement important */
             background-color: #f4f4f4;
         }
         .container {
@@ -38,6 +38,69 @@
         .section-3 h2 {
             color: #ff6200;
         }
+        header nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+        }
+
+        nav a {
+            color: var(--primary-color);
+            margin-left: 20px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--secondary-color);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 24px;
+            border-bottom: 1px solid #ddd;
+            background-color: white;
+            position: sticky;  /* facultatif */
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo img {
+           height: 50px;
+        }
+
+        .logo-text {
+            font-size: 12px;
+            line-height: 1.2;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #1a1a1a;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .nav-links a.active {
+            color: #e53935;
+        }
+
         .radio-group, .checkbox-group {
             margin: 10px 0;
         }
@@ -118,6 +181,24 @@
     </style>
 </head>
 <body>
+
+    <header class="navbar">
+        <div class="logo">
+          <img src="./image/logoohr-hanna.png" alt="Logo Ohr Hanna">
+          <div class="logo-text">
+            <strong>Ohr Hanna</strong><br>
+            <small>Association humanitaire juive de France<br>depuis 1984</small>
+          </div>
+        </div>
+        <nav class="nav-links">
+          <a href="./index.html" class="active">Accueil</a>
+          <div class="dropdown"><a href="#">Nous connaître</a></div>
+          <a href="#">Devenir bénévole</a>
+          <div class="dropdown"><a href="#">Agir avec nous</a></div>
+          <a href="#">Contactez-nous</a>
+        </nav>
+    </header>
+
     <div class="container">
         <!-- Section 1: Mon soutien -->
         <div class="section section-1">
@@ -178,11 +259,11 @@
                 <label>Méthode de paiement</label>
                 <div>
                     <input type="radio" name="payment" value="card" checked> Carte Bancaire
-                    <img src="https://via.placeholder.com/50" alt="Carte Bancaire">
+                    <img src="#" alt="Carte Bancaire">
                 </div>
                 <div>
                     <input type="radio" name="payment" value="paypal"> PayPal
-                    <img src="https://via.placeholder.com/50" alt="PayPal">
+                    <img src="#" alt="PayPal">
                 </div>
             </div>
             <div class="comment-box">
